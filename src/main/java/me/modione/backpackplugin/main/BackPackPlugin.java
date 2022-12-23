@@ -13,6 +13,7 @@ import org.bukkit.plugin.java.JavaPlugin;
 import java.io.File;
 import java.util.*;
 import java.util.concurrent.atomic.AtomicInteger;
+import java.util.logging.Level;
 
 @SuppressWarnings({"ALL", "unchecked", "ResultOfMethodCallIgnored"})
 public final class BackPackPlugin extends JavaPlugin {
@@ -68,9 +69,9 @@ public final class BackPackPlugin extends JavaPlugin {
                     s.delete();
                 }
             } catch (Exception exception) {
-                System.out.println("First Time using BackPackPlugin?");
+                getLogger().log(Level.INFO, "First Time using BackPackPlugin?");
             }
-            System.out.println("BackPack files not found!");
+            getLogger().warning("BackPack files not found!");
         }
     }
 
