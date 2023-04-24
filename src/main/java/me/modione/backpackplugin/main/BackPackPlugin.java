@@ -19,7 +19,7 @@ import java.util.logging.Level;
 public final class BackPackPlugin extends JavaPlugin {
     @SuppressWarnings("SpellCheckingInspection")
     public static final HashMap<ItemStack, Inventory> backpackAinv = new HashMap<>();
-    public static final HashMap<UUID, ItemStack> arm = new HashMap<>();
+    public static final HashMap<UUID, ItemStack> idAbackpack = new HashMap<>();
     public static Recipe recipe;
     public static ItemStack stack;
     public static boolean enabled = true;
@@ -86,22 +86,22 @@ public final class BackPackPlugin extends JavaPlugin {
             for (ItemStack itemStack : backpackAinv.keySet()) {
                 if (!itemStack.getType().equals(Material.CHEST)) continue;
                 UUID id = UUID.randomUUID();
-                arm.put(id, itemStack);
+                idAbackpack.put(id, itemStack);
                 as.put(id, backpackAinv.get(itemStack));
             }
             List<String> saves = new ArrayList<>();
-            for (UUID uuid : arm.keySet()) {
+            for (UUID uuid : idAbackpack.keySet()) {
                 saves.add(uuid.toString());
             }
             config.set("UUID", saves);
-            List<ItemStack> saves1 = new ArrayList<>(arm.values());
+            List<ItemStack> saves1 = new ArrayList<>(idAbackpack.values());
             config.set("ITEMSTACK", saves1);
             config.save();
             File file = new File("plugins/BackPackPlugin/backpacks/");
             file.mkdirs();
-            for (UUID uuid : arm.keySet()) {
+            for (UUID uuid : idAbackpack.keySet()) {
                 FileConfig fileConfig = new FileConfig("backpacks/" + uuid.toString() + ".yml");
-                List<ItemStack> list = Arrays.asList((backpackAinv.get(arm.get(uuid)).getContents()));
+                List<ItemStack> list = Arrays.asList((backpackAinv.get(idAbackpack.get(uuid)).getContents()));
                 fileConfig.set("Inventory", list);
                 fileConfig.save();
             }
