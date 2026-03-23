@@ -1,7 +1,8 @@
+api: spigot
 name: BackPack-Plugin
 version: ${project.version}
 main: me.modione.backpackplugin.main.BackPackPlugin
-api-version: 1.19
+api-version: 1.21
 commands:
   bpsettings:
     description: The setings for this plugin
